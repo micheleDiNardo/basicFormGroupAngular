@@ -29,14 +29,23 @@ export class FormGroupComponent {
   
   createForm() {
     this.formGroup = new FormGroup({
-      name: new FormControl("",[Validators.required, Validators.minLength(5)]),
-      surname: new FormControl("", [Validators.required, Validators.minLength(5)]),
-      age: new FormControl(null,[Validators.required])
+      name: new FormControl("",[Validators.required,
+        Validators.minLength(5),
+        // Validators.pattern(/^[A-Za-zÀ-ÖØ-öø-ÿ]+(?: [A-Za-zÀ-ÖØ-öø-ÿ]+)*$/)
+      ]),
+
+      surname: new FormControl("", [Validators.required,
+         Validators.minLength(5),
+        //  Validators.pattern(/^[A-Za-zÀ-ÖØ-öø-ÿ]+(?: [A-Za-zÀ-ÖØ-öø-ÿ]+)*$/)
+        ]),
+
+      age: new FormControl(null,[Validators.required,
+        // Validators.pattern(/^(?:[1-9][0-9]?|100)$/)
+      ])
     })
   }
 
   onSubmit() {
-    console.log("click")
     if(this.formGroup.valid) {
       console.log(this.formGroup.value);
       let persona = new Persona();
