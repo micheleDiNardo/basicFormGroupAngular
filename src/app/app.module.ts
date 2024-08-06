@@ -4,6 +4,7 @@ import { AppComponent } from './app.component';
 import { FormGroupModule } from './form group/formGroup.module';
 import { CommonModule } from '@angular/common';
 
+
 @NgModule({
   declarations: [
     AppComponent
@@ -11,7 +12,7 @@ import { CommonModule } from '@angular/common';
   imports: [
     BrowserModule,
     CommonModule,
-    FormGroupModule 
+    FormGroupModule
   ],
   bootstrap: [AppComponent]
 })
