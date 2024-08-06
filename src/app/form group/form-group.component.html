@@ -1,0 +1,20 @@
+<form [formGroup]="formGroup">
+    <label for="name">Nome</label>
+    <input type="text" id="name" formControlName="name">
+    <div *ngIf="formGroup.get('name')?.invalid && formGroup.get('name')?.touched">
+      Il nome è obbligatorio e deve avere almeno 10 caratteri
+    </div>
+  
+    <label for="surname">Cognome</label>
+    <input type="text" id="surname" formControlName="surname">
+    <div *ngIf="formGroup.get('surname')?.invalid && formGroup.get('surname')?.touched">
+      Il cognome è obbligatorio e deve avere almeno 10 caratteri
+    </div>
+  
+    <label for="age">Età</label>
+    <input type="number" id="age" formControlName="age">
+    <div *ngIf="formGroup.get('age')?.invalid && formGroup.get('age')?.touched">
+      L'età è obbligatoria
+    </div>
+  </form>
+  

@@ -1,14 +1,16 @@
 /* To learn more about this file see: https://angular.io/config/tsconfig. */
+/* Per ulteriori informazioni su questo file, vedere: https://angular.io/config/tsconfig. */
 {
-  "extends": "./tsconfig.json",
+  "extends": "./tsconfig.json", // Estende la configurazione di base di tsconfig.json
   "compilerOptions": {
-    "outDir": "./out-tsc/app",
-    "types": []
+    "outDir": "./out-tsc/app", // Specifica la cartella di output per i file compilati
+    "types": [] // Specifica i tipi TypeScript aggiuntivi da includere
   },
   "files": [
-    "src/main.ts"
+    "src/main.ts" // Includi il file principale di avvio dell'applicazione
   ],
   "include": [
-    "src/**/*.d.ts"
+    "src/**/*.d.ts" // Includi tutti i file di definizione di tipo
   ]
 }
+
