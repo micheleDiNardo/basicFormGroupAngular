@@ -1,9 +1,10 @@
-import { Component } from '@angular/core';
+import { Component, OnInit } from '@angular/core';
 import { FormControl, FormGroup, ReactiveFormsModule, Validators } from '@angular/forms';
 import { BrowserModule } from '@angular/platform-browser';
 import { RouterOutlet } from '@angular/router';
 import { Persona } from '../utility/persona.model';
 import { CustomValidatorService } from '../utility/CustomvalidatorService.service';
+import { isEmpty } from 'rxjs';
 
 @Component({
   selector: 'app-form-group',
@@ -14,6 +15,7 @@ export class FormGroupComponent {
 
   formGroup!: FormGroup;
   persone: Persona[] = [];
+  booleanButtonSubmit:boolean = true;
 
   constructor(
     public customValidatorService: CustomValidatorService
@@ -26,23 +28,42 @@ export class FormGroupComponent {
   ){
     this.createForm();
   }
-  
+
   createForm() {
     this.formGroup = new FormGroup({
-      name: new FormControl("",[Validators.required,
-        Validators.minLength(5),
-        // Validators.pattern(/^[A-Za-zÀ-ÖØ-öø-ÿ]+(?: [A-Za-zÀ-ÖØ-öø-ÿ]+)*$/)
-      ]),
-
-      surname: new FormControl("", [Validators.required,
-         Validators.minLength(5),
-        //  Validators.pattern(/^[A-Za-zÀ-ÖØ-öø-ÿ]+(?: [A-Za-zÀ-ÖØ-öø-ÿ]+)*$/)
-        ]),
-
+      name: new FormControl("",[Validators.required]),
+      surname: new FormControl("", [Validators.required]),
       age: new FormControl(null,[Validators.required,
-        // Validators.pattern(/^(?:[1-9][0-9]?|100)$/)
       ])
     })
+    this.formGroup.valueChanges.subscribe((data) => {
+      if (data.name !== null && data.name !== "" &&
+        data.surname !== null && data.surname !== "" &&
+        data.age !== null && data.age !== 0)
+     {
+        console.log("entrato")
+        this.checkAvailableButton(data);
+      }else {
+        console.log("ciaoooooooo")
+        this.booleanButtonSubmit = true;
+      }
+    });
+  }
+
+  checkAvailableButton(data: any) {
+    const name = data.name as string;
+    const surname = data.surname as string;
+    const age = data.age as number;
+
+    if (this.customValidatorService.nameSurnameRegex(name) && 
+    this.customValidatorService.nameSurnameRegex(surname) &&
+    this.customValidatorService.ageRegex(age)
+  ) 
+  {
+    console.log("ciao")
+    this.booleanButtonSubmit = false;
+    console.log(this.booleanButtonSubmit)
+  }
   }
 
   onSubmit() {

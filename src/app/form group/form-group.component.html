@@ -20,12 +20,14 @@
     <span class="errorField" *ngIf="!customValidatorService.isAgeValid(formGroup,'age')">This is not valid</span>
   </mat-form-field>
 
-  <button mat-raised-button color="primary" type="submit">Invia</button>
+  <button mat-raised-button color="primary" type="submit" [disabled]="booleanButtonSubmit">Invia</button>
 </form>
 
 <ul *ngFor="let persona of persone;  let i = index">
   <li>
     {{persona.name}}
+    {{persona.surname}}
+    {{persona.age}}
     <button mat-raised-button color="primary" type="button" (click)="removePersona(i)">Elimina</button>
   </li>
 </ul>

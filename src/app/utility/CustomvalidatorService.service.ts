@@ -6,7 +6,7 @@ import { FormGroup } from "@angular/forms";
 })
 
 export class CustomValidatorService {
-    nomeCognomeRegex = /^[A-Za-zÀ-ÖØ-öø-ÿ]+(?: [A-Za-zÀ-ÖØ-öø-ÿ]+)*$/;
+    nomeCognomeRegex = /^[A-Za-zÀ-ÖØ-öø-ÿ]{3,}(?: [A-Za-zÀ-ÖØ-öø-ÿ]+)*$/;
     etaRegex = /^(?:[1-9][0-9]?|100)$/;
 
     isFieldValid(form: FormGroup, field: string) {
@@ -29,7 +29,6 @@ isNameSurnameValid(form:FormGroup, field: string) {
         }
     }
     return true;
-
 }
 
 isAgeValid(form:FormGroup, field: string) {
@@ -47,7 +46,20 @@ isAgeValid(form:FormGroup, field: string) {
         }
     }
     return true;
+}
 
+nameSurnameRegex(name: string): boolean {
+    if (name == null || name.trim() === "") {
+        return false;
+    }
+    return this.nomeCognomeRegex.test(name);
+}
+
+ageRegex(age: number): boolean {
+    if (age == null || age === 0) {
+        return false;
+    }
+    return this.etaRegex.test(age.toString());
 }
 
 
