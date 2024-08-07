@@ -64,7 +64,6 @@ export class FormGroupComponent {
 
   onSubmit() {
     if(this.formGroup.valid) {
-      console.log(this.formGroup.value);
       let persona = new Persona();
       persona = this.formGroup.value;
       this.persone.push(persona);
