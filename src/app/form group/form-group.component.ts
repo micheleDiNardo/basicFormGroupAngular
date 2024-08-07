@@ -41,10 +41,8 @@ export class FormGroupComponent {
         data.surname !== null && data.surname !== "" &&
         data.age !== null && data.age !== 0)
      {
-        console.log("entrato")
         this.checkAvailableButton(data);
       }else {
-        console.log("ciaoooooooo")
         this.booleanButtonSubmit = true;
       }
     });
@@ -60,9 +58,7 @@ export class FormGroupComponent {
     this.customValidatorService.ageRegex(age)
   ) 
   {
-    console.log("ciao")
     this.booleanButtonSubmit = false;
-    console.log(this.booleanButtonSubmit)
   }
   }
 
@@ -72,13 +68,11 @@ export class FormGroupComponent {
       let persona = new Persona();
       persona = this.formGroup.value;
       this.persone.push(persona);
-      console.log(this.persone)
     }
   }
 
   removePersona(i:number) {
     this.persone.splice(i,1);
-    console.log(this.persone)
   }
 
 }
